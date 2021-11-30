@@ -1,6 +1,12 @@
 <template>
   <div class="topnav">
-    <div class="logo" @click="toggleMenu">logo</div>
+    <div class="left" @click="toggleMenu">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-ego-caidan"></use>
+      </svg>
+      <div class="logo">logo</div>
+    </div>
+
     <ul class="menu">
       <li>菜单1</li>
       <li>菜单2</li>
@@ -30,8 +36,13 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: 16px;
-  .logo {
-    max-width: 6em;
+  .left {
+    display: flex;
+    align-items: center;
+    .logo {
+      margin-left: 6px;
+      max-width: 6em;
+    }
   }
   .menu {
     display: flex;
@@ -39,6 +50,11 @@ export default {
     flex-wrap: nowrap;
     .li {
       margin: 0 1em;
+    }
+  }
+  @media (max-width: 500px) {
+    .menu {
+      display: none;
     }
   }
 }
