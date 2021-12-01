@@ -30,7 +30,12 @@ export default {
 
 <style lang="scss" scoped>
 .topnav {
-  position: relative;
+  // position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
   z-index: 10;
   background: rgb(66, 184, 132);
   display: flex;
