@@ -1,11 +1,17 @@
 <template>
   <div>
-    <button @click="toggle" :class="{ checked: value }"><span></span></button>
+    <button
+      @click="toggle"
+      class="wheel-switch"
+      :class="{ 'wheel-checked': value }"
+    >
+      <span></span>
+    </button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   props: {
@@ -20,10 +26,10 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $h: 22px;
 $h2: $h - 4px;
-button {
+.wheel-switch {
   height: $h;
   width: $h * 2;
   border: none;
@@ -40,10 +46,10 @@ button {
     border-radius: $h/2;
     transition: left 250ms;
   }
-  &.checked {
+  &.wheel-checked {
     background: #1890ff;
   }
-  &.checked > span {
+  &.wheel-checked > span {
     left: calc(100% - #{$h2} - 2px);
   }
   &:active {
@@ -51,7 +57,7 @@ button {
       width: $h2 + 4px;
     }
   }
-  &.checked:active {
+  &.wheel-checked:active {
     > span {
       width: $h2 + 4px;
       margin-left: -4px;
