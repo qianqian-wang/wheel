@@ -7,7 +7,14 @@
     :closeOnClickOverlay="false"
     :ok="f1"
     :cancel="f2"
-  ></Dialog>
+  >
+    <template v-slot:title> 测试</template>
+    <template v-slot:content>
+      <p>第一个</p>
+      <p>第二个</p>
+      <p>第三个</p>
+    </template>
+  </Dialog>
 </template>
 <script lang="ts">
 import Dialog from "../lib/Dialog.vue";
