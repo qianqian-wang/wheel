@@ -1,17 +1,21 @@
 <template>
-  <div class="wheel-dialog-overlay"></div>
-  <div class="wheel-dialog-wrapper">
-    <div class="wheel-dialog">
-      <header>标题<span class="wheel-dialog-close"></span></header>
-      <main>
-        <p>你好</p>
-      </main>
-      <footer>
-        <Button level="main">OK</Button>
-        <Button>Cancel</Button>
-      </footer>
+  <template v-if="visible">
+    <div class="wheel-dialog-overlay" @click="OnClickOverlay"></div>
+    <div class="wheel-dialog-wrapper">
+      <div class="wheel-dialog">
+        <header>
+          标题<span class="wheel-dialog-close" @click="close"></span>
+        </header>
+        <main>
+          <p>你好</p>
+        </main>
+        <footer>
+          <Button level="main" @click="ok">OK</Button>
+          <Button @click="close">Cancel</Button>
+        </footer>
+      </div>
     </div>
-  </div>
+  </template>
 </template>
 
 <script lang="ts">
@@ -19,8 +23,43 @@ import { defineComponent } from "vue";
 import Button from "./Button.vue";
 export default defineComponent({
   components: { Button },
-  setup() {
-    return {};
+  props: {
+    visible: {
+      type: Boolean,
+      default: false,
+    },
+    closeOnClickOverlay: {
+      type: Boolean,
+      default: true,
+    },
+    ok: {
+      type: Function,
+    },
+    cancel: {
+      type: Function,
+    },
+  },
+  setup(props, context) {
+    const close = () => {
+      context.emit("update:visible", false);
+    };
+    const OnClickOverlay = () => {
+      if (props.closeOnClickOverlay) {
+        close();
+      }
+    };
+    const ok = () => {
+      //   if (props.ok && props.ok() !== false) {
+      if (props.ok?.() !== false) {
+        close();
+      }
+    };
+    const cancel = () => {
+      if (props.cancel?.() !== false) {
+        close();
+      }
+    };
+    return { close, OnClickOverlay, ok };
   },
 });
 </script>
