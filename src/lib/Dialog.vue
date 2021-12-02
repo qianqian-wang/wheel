@@ -1,21 +1,23 @@
 <template>
   <template v-if="visible">
-    <div class="wheel-dialog-overlay" @click="OnClickOverlay"></div>
-    <div class="wheel-dialog-wrapper">
-      <div class="wheel-dialog">
-        <header>
-          <slot name="title"></slot>
-          <span class="wheel-dialog-close" @click="close"></span>
-        </header>
-        <main>
-          <slot name="content"></slot>
-        </main>
-        <footer>
-          <Button level="main" @click="ok">OK</Button>
-          <Button @click="close">Cancel</Button>
-        </footer>
+    <Teleport to="body">
+      <div class="wheel-dialog-overlay" @click="OnClickOverlay"></div>
+      <div class="wheel-dialog-wrapper">
+        <div class="wheel-dialog">
+          <header>
+            <slot name="title"></slot>
+            <span class="wheel-dialog-close" @click="close"></span>
+          </header>
+          <main>
+            <slot name="content"></slot>
+          </main>
+          <footer>
+            <Button level="main" @click="ok">OK</Button>
+            <Button @click="cancel">Cancel</Button>
+          </footer>
+        </div>
       </div>
-    </div>
+    </Teleport>
   </template>
 </template>
 
@@ -60,7 +62,7 @@ export default defineComponent({
         close();
       }
     };
-    return { close, OnClickOverlay, ok };
+    return { close, OnClickOverlay, ok, cancel };
   },
 });
 </script>

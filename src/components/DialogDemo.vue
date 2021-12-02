@@ -28,9 +28,11 @@ export default {
       x.value = !x.value;
     };
     const f1 = () => {
-      return false;
+      return true;
     };
-    const f2 = () => {};
+    const f2 = () => {
+      return true;
+    };
     return { x, toggle, f1, f2 };
   },
 };
