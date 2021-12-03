@@ -15,10 +15,14 @@
       <p>第三个</p>
     </template>
   </Dialog>
+
+  <h1>示例二</h1>
+  <Button @click="showDialog">show</Button>
 </template>
 <script lang="ts">
 import Dialog from "../lib/Dialog.vue";
 import Button from "../lib/Button.vue";
+import { openDialog } from "../lib/openDialog";
 import { ref } from "vue";
 export default {
   components: { Dialog, Button },
@@ -33,7 +37,13 @@ export default {
     const f2 = () => {
       return true;
     };
-    return { x, toggle, f1, f2 };
+    const showDialog = () => {
+      openDialog({
+        title: "标题",
+        content: "内容",
+      });
+    };
+    return { x, toggle, f1, f2, showDialog };
   },
 };
 </script>
