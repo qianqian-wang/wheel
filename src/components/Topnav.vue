@@ -1,10 +1,14 @@
 <template>
-  <div class="topnav">
+  <div class="topNav">
     <div class="left" @click="toggleMenu">
-      <svg class="icon" aria-hidden="true">
+      <svg class="icon">
         <use xlink:href="#icon-ego-caidan"></use>
       </svg>
-      <div class="logo">logo</div>
+      <div class="logo">
+        <svg class="icon">
+          <use xlink:href="#icon-shatan_fanchuan"></use>
+        </svg>
+      </div>
     </div>
 
     <ul class="menu">
@@ -29,15 +33,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.topnav {
+$color: #11958f;
+.topNav {
   // position: relative;
+  color: $color;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-
   z-index: 10;
-  background: rgb(66, 184, 132);
   display: flex;
   justify-content: space-between;
   padding: 16px;
@@ -47,6 +51,10 @@ export default {
     .logo {
       margin-left: 6px;
       max-width: 6em;
+      > svg {
+        width: 32px;
+        height: 32px;
+      }
     }
   }
   .menu {
