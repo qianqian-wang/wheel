@@ -110,7 +110,7 @@ $color: #11958f;
       }
       h3 {
         grid-area: title;
-        font-size: 28px;
+        font-size: 32px;
       }
       p {
         grid-area: text;
