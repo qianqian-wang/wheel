@@ -1,16 +1,21 @@
 <template>
   <div class="wheel-tabs">
-    <div class="wheel-tabs-nav">
+    <div class="wheel-tabs-nav" ref="container">
       <div
         class="wheel-tabs-nav-item"
         v-for="(t, index) in title"
+        :ref="
+          (el) => {
+            if (el) navItems[index] = el;
+          }
+        "
         @click="select(t)"
         :class="{ selected: t === selected }"
         :key="index"
       >
         {{ t }}
       </div>
-      <div class="wheel-tabs-nav-indicator"></div>
+      <div class="wheel-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="wheel-tabs-content">
       <component
@@ -23,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { computed } from "vue";
+import { computed, onMounted, onUpdated, ref } from "vue";
 import Tab from "./Tab.vue";
 export default {
   props: {
@@ -32,6 +37,26 @@ export default {
     },
   },
   setup(props, context) {
+    const navItems = ref<HTMLDivElement[]>([]);
+    const indicator = ref<HTMLDivElement>(null);
+    const container = ref<HTMLDivElement>(null);
+    const x = () => {
+      const divs = navItems.value;
+      const result = divs.filter((div) =>
+        div.classList.contains("selected")
+      )[0];
+      const { width, left: left1 } = result.getBoundingClientRect();
+      const { left: left2 } = container.value.getBoundingClientRect();
+      indicator.value.style.width = width + "px";
+      const left = left1 - left2;
+      indicator.value.style.left = left + "px";
+    };
+    onMounted(() => {
+      x();
+    });
+    onUpdated(() => {
+      x();
+    });
     const defaults = context.slots.default();
     defaults.forEach((tag) => {
       if (tag.type != Tab) {
@@ -49,7 +74,7 @@ export default {
         return tag.props.title === props.selected;
       })[0];
     });
-    return { defaults, title, select, current };
+    return { defaults, title, select, current, navItems, indicator, container };
   },
 };
 </script>
@@ -82,6 +107,7 @@ $border-color: #d9d9d9;
       width: 100px;
       left: 0;
       bottom: -1px;
+      transition: all 250ms;
     }
   }
   &-content {
