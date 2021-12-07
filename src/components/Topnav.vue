@@ -1,7 +1,7 @@
 <template>
   <div class="topNav">
     <div class="left" @click="toggleMenu">
-      <svg class="icon">
+      <svg class="icon" v-if="visible">
         <use xlink:href="#icon-ego-caidan"></use>
       </svg>
       <div class="logo">
@@ -22,6 +22,11 @@
 import { inject, Ref } from "vue";
 
 export default {
+  props: {
+    visible: {
+      type: Boolean,
+    },
+  },
   setup() {
     const asideVisible = inject<Ref<boolean>>("asideVisible");
     const toggleMenu = () => {
