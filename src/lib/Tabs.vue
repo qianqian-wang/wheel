@@ -6,7 +6,7 @@
         v-for="(t, index) in title"
         :ref="
           (el) => {
-            if (el) navItems[index] = el;
+            if (t === selected) selectedItem = el;
           }
         "
         @click="select(t)"
@@ -37,15 +37,11 @@ export default {
     },
   },
   setup(props, context) {
-    const navItems = ref<HTMLDivElement[]>([]);
+    const selectedItem = ref<HTMLDivElement>(null);
     const indicator = ref<HTMLDivElement>(null);
     const container = ref<HTMLDivElement>(null);
     const x = () => {
-      const divs = navItems.value;
-      const result = divs.filter((div) =>
-        div.classList.contains("selected")
-      )[0];
-      const { width, left: left1 } = result.getBoundingClientRect();
+      const { width, left: left1 } = selectedItem.value.getBoundingClientRect();
       const { left: left2 } = container.value.getBoundingClientRect();
       indicator.value.style.width = width + "px";
       const left = left1 - left2;
@@ -74,7 +70,15 @@ export default {
         return tag.props.title === props.selected;
       })[0];
     });
-    return { defaults, title, select, current, navItems, indicator, container };
+    return {
+      defaults,
+      title,
+      select,
+      current,
+      selectedItem,
+      indicator,
+      container,
+    };
   },
 };
 </script>
