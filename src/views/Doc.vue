@@ -76,6 +76,7 @@ export default {
   }
 }
 aside {
+  background: green;
   width: 150px;
   padding: 16px;
   position: fixed;
@@ -89,6 +90,9 @@ aside {
   ol {
     li {
       padding: 4px 0;
+      > .router-link-active {
+        text-decoration: underline;
+      }
     }
   }
   @media (max-width: 500px) {
