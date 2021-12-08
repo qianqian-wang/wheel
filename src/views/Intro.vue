@@ -1,9 +1,11 @@
 <template>
-  <div>介绍</div>
+  <markdown path="../markdown/intro.md"></markdown>
 </template>
-
 <script>
-export default {};
+import markdown from "../components/Markdown.vue";
+export default {
+  components: {
+    markdown,
+  },
+};
 </script>
-
-<style lang="scss" scoped></style>
