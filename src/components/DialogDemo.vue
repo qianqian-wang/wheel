@@ -1,18 +1,18 @@
 <template>
   <div>Dialog示例</div>
-  <Demo :component="dialogDemo1"></Demo>
-  <Demo :component="dialogDemo2"></Demo>
+  <Demo :component="DialogDemo1"></Demo>
+  <Demo :component="DialogDemo2"></Demo>
 </template>
 <script lang="ts">
-import dialogDemo1 from "./dialog/dialogDemo1.vue";
-import dialogDemo2 from "./dialog/dialogDemo2.vue";
+import DialogDemo1 from "./dialog/DialogDemo1.vue";
+import DialogDemo2 from "./dialog/DialogDemo2.vue";
 import Demo from "./Demo.vue";
 export default {
   components: {
     Demo,
   },
   setup() {
-    return { dialogDemo2, dialogDemo1 };
+    return { DialogDemo2, DialogDemo1 };
   },
 };
 </script>
