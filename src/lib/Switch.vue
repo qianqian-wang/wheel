@@ -16,10 +16,18 @@ import { defineComponent } from "vue";
 export default defineComponent({
   props: {
     value: Boolean,
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, context) {
     const toggle = () => {
-      context.emit("update:value", !props.value);
+      if (props.disabled) {
+        context.emit("update:value", false);
+      } else {
+        context.emit("update:value", !props.value);
+      }
     };
     return { toggle };
   },
