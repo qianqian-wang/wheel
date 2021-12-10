@@ -57,45 +57,31 @@ $color: #11958f;
     rgba(183, 233, 230, 1) 100%
   );
   clip-path: ellipse(80% 60% at 50% 40%);
-  .banner {
-    color: $color;
-    padding: 100px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    h1 {
-      font-size: 62px;
-    }
-    > .actions {
-      padding: 8px 0;
-      a {
-        margin: 0 8px;
-        background: $green;
-        display: inline-block;
-        padding: 8px 24px;
-        color: white;
-        text-decoration: none;
-        border-radius: $border-radius;
-      }
-    }
-  }
 }
 .features {
   margin: 64px auto;
-  width: 400px;
+  padding: 0 16px;
   @media (min-width: 800px) {
     width: 800px;
+    > ul {
+      > li {
+        width: 50%;
+      }
+    }
   }
   @media (min-width: 1200px) {
     width: 1200px;
+    > ul {
+      > li {
+        width: 33.3333%;
+      }
+    }
   }
   > ul {
     display: flex;
     flex-wrap: wrap;
 
     > li {
-      width: 400px;
       margin: 16px 0;
       display: grid;
       justify-content: start;
@@ -114,6 +100,30 @@ $color: #11958f;
       }
       p {
         grid-area: text;
+      }
+    }
+  }
+}
+.banner {
+  color: $color;
+  padding: 100px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  > .actions {
+    padding: 8px 0;
+    a {
+      margin: 0 8px;
+      background: $green;
+      display: inline-block;
+      padding: 8px 24px;
+      color: white;
+
+      border-radius: $border-radius;
+      &:hover {
+        text-decoration: none;
       }
     }
   }

@@ -42,16 +42,20 @@ import TopNav from "../components/TopNav.vue";
 import { inject, Ref } from "vue";
 export default {
   components: { TopNav },
+
   setup() {
     const asideVisible = inject<Ref<boolean>>("asideVisible");
+
     return { asideVisible };
   },
 };
 </script>
 <style lang="scss" scoped>
+$aside-index: 10;
 .layout {
   display: flex;
   flex-direction: column;
+  height: 100vh;
   > .nav {
     flex-shrink: 0;
   }
@@ -84,6 +88,7 @@ aside {
   left: 0;
   padding-top: 70px;
   height: 100%;
+  z-index: $aside-index;
   h2 {
     margin-bottom: 4px;
     padding: 0 16px;
@@ -100,14 +105,14 @@ aside {
       }
     }
   }
-  @media (max-width: 500px) {
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding-top: 70px;
-  }
-  main {
-    overflow: auto;
-  }
+  // @media (max-width: 500px) {
+  //   position: fixed;
+  //   top: 0;
+  //   left: 0;
+  //   padding-top: 70px;
+  // }
+}
+main {
+  overflow: auto;
 }
 </style>

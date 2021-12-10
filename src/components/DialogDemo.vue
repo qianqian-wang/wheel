@@ -1,7 +1,9 @@
 <template>
-  <div>Dialog示例</div>
-  <Demo :component="DialogDemo1"></Demo>
-  <Demo :component="DialogDemo2"></Demo>
+  <div>
+    <h1>Dialog示例</h1>
+    <Demo :component="DialogDemo1"></Demo>
+    <Demo :component="DialogDemo2"></Demo>
+  </div>
 </template>
 <script lang="ts">
 import DialogDemo1 from "./dialog/DialogDemo1.vue";
