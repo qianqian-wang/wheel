@@ -31,7 +31,7 @@
           </li>
         </ol>
       </aside>
-      <main>
+      <main @click="test">
         <router-view></router-view>
       </main>
     </div>
@@ -39,14 +39,19 @@
 </template>
 <script lang="ts">
 import TopNav from "../components/TopNav.vue";
-import { inject, Ref } from "vue";
+import { inject, onBeforeUnmount, onMounted, Ref } from "vue";
 export default {
   components: { TopNav },
-
   setup() {
     const asideVisible = inject<Ref<boolean>>("asideVisible");
+    const test = () => {
+      const width = document.documentElement.clientWidth;
+      if (width <= 500) {
+        asideVisible.value = false;
+      }
+    };
 
-    return { asideVisible };
+    return { asideVisible, test };
   },
 };
 </script>
